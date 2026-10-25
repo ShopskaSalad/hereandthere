@@ -1,0 +1,38 @@
+{
+  "name": "between-borders",
+  "version": "1.0.0",
+  "description": "Kamil Akin's public storytelling and Toastmasters contest diary.",
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro check && astro build",
+    "preview": "astro preview",
+    "check": "astro check"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ShopskaSalad/hereandthere.git"
+  },
+  "keywords": [
+    "astro",
+    "storytelling",
+    "toastmasters",
+    "diary"
+  ],
+  "author": "Kamil Akin",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ShopskaSalad/hereandthere/issues"
+  },
+  "homepage": "https://shopskasalad.github.io/hereandthere/",
+  "dependencies": {
+    "@astrojs/rss": "^4.0.19",
+    "@astrojs/sitemap": "^3.7.4",
+    "astro": "^7.4.2"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.12",
+    "typescript": "^6.0.3"
+  }
+}

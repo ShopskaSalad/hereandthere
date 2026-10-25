@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#f6f4ef"/>
+  <circle cx="1030" cy="85" r="240" fill="#eee1d8"/>
+  <path d="M80 76h1040" stroke="#dcd8cf"/>
+  <text x="80" y="58" font-family="Arial, sans-serif" font-size="18" fill="#706f69" letter-spacing="3">A PUBLIC STORYTELLING DIARY</text>
+  <text x="78" y="270" font-family="Georgia, serif" font-size="120" fill="#20201e">Between</text>
+  <text x="78" y="390" font-family="Georgia, serif" font-style="italic" font-size="120" fill="#9c4f2f">borders.</text>
+  <text x="83" y="485" font-family="Arial, sans-serif" font-size="28" fill="#706f69">Stories, speaking, and becoming  by Kamil Akin</text>
+  <path d="M80 550h1040" stroke="#dcd8cf"/>
+  <circle cx="1090" cy="590" r="20" fill="#20201e"/>
+  <text x="1090" y="596" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#f6f4ef">B/B</text>
+</svg>

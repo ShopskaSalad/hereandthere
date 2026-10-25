@@ -1,0 +1,91 @@
+---
+const base = import.meta.env.BASE_URL;
+const pathname = Astro.url.pathname;
+
+const links = [
+  { href: `${base}`, label: "Home" },
+  { href: `${base}diary/`, label: "Diary" },
+  { href: `${base}about/`, label: "About" },
+];
+---
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="wordmark" href={base} aria-label="Between Borders home">
+      <span class="mark" aria-hidden="true">B/B</span>
+      <span>Between Borders</span>
+    </a>
+
+    <nav aria-label="Primary navigation">
+      {
+        links.map(({ href, label }) => (
+          <a href={href} aria-current={pathname === href ? "page" : undefined}>
+            {label}
+          </a>
+        ))
+      }
+      <a href={`${base}rss.xml`} aria-label="RSS feed">RSS</a>
+    </nav>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    border-bottom: 1px solid var(--line);
+  }
+
+  .header-inner {
+    display: flex;
+    min-height: 5.5rem;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+  }
+
+  .wordmark {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.7rem;
+    font-family: "Newsreader", Georgia, serif;
+    font-size: 1.15rem;
+    text-decoration: none;
+  }
+
+  .mark {
+    display: grid;
+    width: 2.25rem;
+    height: 2.25rem;
+    place-items: center;
+    border: 1px solid var(--ink);
+    border-radius: 50%;
+    font-family: "DM Sans", system-ui, sans-serif;
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: -0.03em;
+  }
+
+  nav {
+    display: flex;
+    align-items: center;
+    gap: clamp(0.8rem, 2vw, 1.6rem);
+    font-size: 0.88rem;
+  }
+
+  nav a {
+    text-decoration: none;
+  }
+
+  nav a[aria-current="page"] {
+    color: var(--accent);
+  }
+
+  @media (max-width: 38rem) {
+    .wordmark > span:last-child {
+      display: none;
+    }
+
+    .header-inner {
+      min-height: 4.5rem;
+    }
+  }
+</style>

@@ -1,0 +1,151 @@
+---
+import { getCollection, render, type CollectionEntry } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+export async function getStaticPaths() {
+  const entries = await getCollection("diary", ({ data }) => !data.draft);
+  return entries.map((entry) => ({
+    params: { id: entry.id },
+    props: { entry },
+  }));
+}
+
+interface Props {
+  entry: CollectionEntry<"diary">;
+}
+
+const { entry } = Astro.props;
+const { Content, headings } = await render(entry);
+const base = import.meta.env.BASE_URL;
+const date = entry.data.pubDate.toLocaleDateString("en-GB", {
+  day: "2-digit",
+  month: "long",
+  year: "numeric",
+});
+---
+
+<BaseLayout title={entry.data.title} description={entry.data.description} article>
+  <article>
+    <header class="article-header container">
+      <a class="back" href={`${base}diary/`}><span aria-hidden="true">←</span> Diary</a>
+      <p class="eyebrow">{entry.data.tags.join(" · ")}</p>
+      <h1>{entry.data.title}</h1>
+      <p class="description">{entry.data.description}</p>
+      <time datetime={entry.data.pubDate.toISOString()}>{date}</time>
+    </header>
+
+    <div class="article-grid container">
+      <aside class="rail" aria-label="On this page">
+        <span>Note</span>
+        <p>{String(headings.length + 1).padStart(2, "0")}</p>
+        <div class="vertical-line"></div>
+      </aside>
+
+      <div class="prose">
+        <Content />
+      </div>
+    </div>
+
+    <footer class="article-footer container">
+      <p>End of note.</p>
+      <a href={`${base}diary/`}>Return to the diary <span aria-hidden="true">→</span></a>
+    </footer>
+  </article>
+</BaseLayout>
+
+<style>
+  .article-header {
+    max-width: 70rem;
+    padding-block: 5rem 4rem;
+    text-align: center;
+  }
+
+  .back {
+    display: inline-block;
+    margin-bottom: 4rem;
+    color: var(--muted);
+    font-size: 0.82rem;
+    text-decoration: none;
+  }
+
+  h1 {
+    max-width: 64rem;
+    margin: 0 auto 1.5rem;
+    font-size: clamp(3rem, 8vw, 6.5rem);
+  }
+
+  .description {
+    max-width: 44rem;
+    margin: 0 auto 1rem;
+    color: var(--muted);
+    font-family: "Newsreader", Georgia, serif;
+    font-size: 1.45rem;
+  }
+
+  time {
+    color: var(--muted);
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  .article-grid {
+    display: grid;
+    grid-template-columns: 6rem minmax(0, var(--reading));
+    justify-content: center;
+    gap: 3rem;
+    padding-top: 4rem;
+    border-top: 1px solid var(--line);
+  }
+
+  .rail {
+    color: var(--muted);
+    font-size: 0.68rem;
+    letter-spacing: 0.1em;
+    text-align: center;
+    text-transform: uppercase;
+  }
+
+  .rail p {
+    margin-top: 0.3rem;
+    color: var(--accent);
+    font-family: "Newsreader", Georgia, serif;
+    font-size: 2rem;
+  }
+
+  .vertical-line {
+    width: 1px;
+    height: 8rem;
+    margin: 1rem auto;
+    background: var(--line);
+  }
+
+  .article-footer {
+    display: flex;
+    max-width: var(--reading);
+    justify-content: space-between;
+    margin-top: 5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--line);
+    color: var(--muted);
+    font-size: 0.85rem;
+  }
+
+  .article-footer p {
+    margin: 0;
+  }
+
+  .article-footer a {
+    text-decoration: none;
+  }
+
+  @media (max-width: 42rem) {
+    .article-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .rail {
+      display: none;
+    }
+  }
+</style>

@@ -1,0 +1,222 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import EntryCard from "../components/EntryCard.astro";
+
+const base = import.meta.env.BASE_URL;
+const entries = (await getCollection("diary", ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
+const latest = entries.slice(0, 3);
+---
+
+<BaseLayout>
+  <section class="hero container">
+    <div class="hero-copy">
+      <p class="eyebrow">A public storytelling diary</p>
+      <h1>Between<br /><em>borders.</em></h1>
+      <p class="intro">
+        I’m Kamil. I’m learning to turn a life of borders, numbers, failures, and new beginnings into
+        stories people can feel.
+      </p>
+      <div class="hero-actions">
+        <a class="button" href={`${base}diary/`}>Read the diary</a>
+        <a class="button secondary" href={`${base}about/`}>About this journey</a>
+      </div>
+    </div>
+
+    <aside class="manifesto" aria-label="Journey statement">
+      <span class="manifesto-number">01</span>
+      <p>
+        “I am not documenting this as an expert. I am documenting it as a student determined to become
+        a storyteller worth listening to.”
+      </p>
+      <span class="signature">— Kamil Akin</span>
+    </aside>
+  </section>
+
+  <section class="numbers container" aria-label="Journey in numbers">
+    <div><strong>100+</strong><span>border crossings before 18</span></div>
+    <div><strong>2</strong><span>cultures shaping one voice</span></div>
+    <div><strong>{entries.length}</strong><span>notes in the diary</span></div>
+    <div><strong>1</strong><span>national-stage goal</span></div>
+  </section>
+
+  <section class="latest container">
+    <div class="section-heading">
+      <div>
+        <p class="eyebrow">Latest notes</p>
+        <h2>Learning in public.</h2>
+      </div>
+      <a href={`${base}diary/`}>View all entries <span aria-hidden="true">→</span></a>
+    </div>
+    <div class="entries">
+      {latest.map((entry, index) => <EntryCard entry={entry} index={index} />)}
+    </div>
+  </section>
+
+  <section class="closing container">
+    <p class="eyebrow">The question behind the diary</p>
+    <p class="closing-line">
+      Why do some stories disappear when a speech ends, while others stay with us for years?
+    </p>
+  </section>
+</BaseLayout>
+
+<style>
+  .hero {
+    display: grid;
+    grid-template-columns: 1.45fr 0.55fr;
+    min-height: 40rem;
+    align-items: center;
+    gap: clamp(3rem, 8vw, 9rem);
+    padding-block: 5rem;
+  }
+
+  h1 {
+    margin-bottom: 2rem;
+  }
+
+  h1 em {
+    color: var(--accent);
+    font-weight: 400;
+  }
+
+  .intro {
+    max-width: 38rem;
+    color: #454440;
+    font-family: "Newsreader", Georgia, serif;
+    font-size: clamp(1.35rem, 2.6vw, 1.8rem);
+    line-height: 1.45;
+  }
+
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 2.2rem;
+  }
+
+  .manifesto {
+    position: relative;
+    padding: 2.2rem 0 1.4rem 2rem;
+    border-left: 1px solid var(--line);
+  }
+
+  .manifesto-number {
+    display: block;
+    margin-bottom: 3.5rem;
+    color: var(--accent);
+    font-size: 0.76rem;
+  }
+
+  .manifesto p {
+    font-family: "Newsreader", Georgia, serif;
+    font-size: 1.3rem;
+    line-height: 1.5;
+  }
+
+  .signature {
+    color: var(--muted);
+    font-size: 0.78rem;
+  }
+
+  .numbers {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .numbers div {
+    display: grid;
+    min-height: 10rem;
+    align-content: center;
+    padding: 1.5rem;
+    border-right: 1px solid var(--line);
+  }
+
+  .numbers div:last-child {
+    border-right: 0;
+  }
+
+  .numbers strong {
+    font-family: "Newsreader", Georgia, serif;
+    font-size: 2.7rem;
+    font-weight: 400;
+  }
+
+  .numbers span {
+    max-width: 10rem;
+    color: var(--muted);
+    font-size: 0.78rem;
+  }
+
+  .latest {
+    padding-top: 7rem;
+  }
+
+  .section-heading {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    gap: 2rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .section-heading h2 {
+    margin-bottom: 0;
+  }
+
+  .section-heading > a {
+    margin-bottom: 0.5rem;
+    font-size: 0.88rem;
+    text-decoration: none;
+  }
+
+  .entries {
+    border-bottom: 1px solid var(--line);
+  }
+
+  .closing {
+    padding-block: 8rem 2rem;
+  }
+
+  .closing-line {
+    max-width: 60rem;
+    margin: 0;
+    font-family: "Newsreader", Georgia, serif;
+    font-size: clamp(2.3rem, 6vw, 5.3rem);
+    line-height: 1.05;
+    letter-spacing: -0.045em;
+  }
+
+  @media (max-width: 48rem) {
+    .hero {
+      grid-template-columns: 1fr;
+      min-height: auto;
+      gap: 1rem;
+      padding-block: 4rem;
+    }
+
+    .manifesto {
+      margin-top: 2rem;
+    }
+
+    .manifesto-number {
+      margin-bottom: 1.5rem;
+    }
+
+    .numbers {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .numbers div:nth-child(2) {
+      border-right: 0;
+    }
+
+    .numbers div:nth-child(-n + 2) {
+      border-bottom: 1px solid var(--line);
+    }
+  }
+</style>

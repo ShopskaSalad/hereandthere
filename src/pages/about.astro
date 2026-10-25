@@ -1,0 +1,171 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const base = import.meta.env.BASE_URL;
+---
+
+<BaseLayout
+  title="About Kamil"
+  description="Kamil Akin's path through borders, mathematics, startups, finance, and storytelling."
+>
+  <header class="page-header container">
+    <p class="eyebrow">About me</p>
+    <h1>A life between borders, numbers, and stories.</h1>
+    <p class="lead">
+      I grew up crossing borders—literally. Now I am learning to turn those crossings into stories
+      people can feel.
+    </p>
+  </header>
+
+  <div class="about-grid container">
+    <aside>
+      <div class="portrait" aria-hidden="true">
+        <span>KA</span>
+      </div>
+      <dl>
+        <div><dt>Based in</dt><dd>Türkiye</dd></div>
+        <div><dt>Work</dt><dd>Finance</dd></div>
+        <div><dt>Study</dt><dd>Mathematics</dd></div>
+        <div><dt>Current craft</dt><dd>Storytelling</dd></div>
+      </dl>
+    </aside>
+
+    <article class="prose">
+      <p>
+        I am the eldest child of an immigrant family and was raised in western Türkiye in a crowded
+        home shaped by two citizenships and two cultures. My grandparents—the rockstars of our
+        family—played a central role in raising me.
+      </p>
+
+      <p>
+        Before I turned eighteen, I crossed international borders more than one hundred times. Moving
+        repeatedly between countries and cultures taught me that the same place, event, or person can
+        look completely different depending on where you stand.
+      </p>
+
+      <h2>A non-linear education</h2>
+
+      <p>
+        Numbers became another language for me. I answered every mathematics question correctly in
+        the national university entrance examination and chose to study mathematics. From the outside,
+        that might sound like the beginning of a predictable academic path.
+      </p>
+
+      <p>It was not.</p>
+
+      <p>
+        I left and returned to university more than once. During my undergraduate years, I attempted
+        several startups; none became the success I imagined. Eventually, I completed my mathematics
+        degree and began a master's program—then left during its second month.
+      </p>
+
+      <p>
+        Today, I work in finance and spend some of my free time supporting founders through startup
+        acceleration. Finance gives me structure. Startups keep me close to experimentation. Failure
+        taught me to begin again.
+      </p>
+
+      <h2>Why storytelling?</h2>
+
+      <p>
+        I do not want merely to speak clearly. I want to understand why some stories disappear when a
+        speech ends while others remain with us for years.
+      </p>
+
+      <p>
+        Storytelling is where the different parts of my life begin to meet: the child crossing
+        borders, the mathematics student attracted to structure, the founder who experienced failure,
+        the finance professional who values clarity, and the speaker learning to transform experience
+        into meaning.
+      </p>
+
+      <blockquote>
+        My goal is not only to reach a stage. It is to become a storyteller worth listening to.
+      </blockquote>
+
+      <p>
+        My current goal is to compete in the Toastmasters national speech contest in Türkiye. Reaching
+        that stage is not guaranteed. This diary records the maps, lessons, mistakes, feedback, and
+        rewrites along the way—without publishing my complete final contest speech.
+      </p>
+
+      <p><a class="button" href={`${base}diary/`}>Follow the diary</a></p>
+    </article>
+  </div>
+</BaseLayout>
+
+<style>
+  .page-header {
+    padding-block: 6rem 4rem;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .page-header h1 {
+    max-width: 64rem;
+    margin-bottom: 1.5rem;
+    font-size: clamp(3.2rem, 8vw, 6.8rem);
+  }
+
+  .lead {
+    max-width: 46rem;
+    color: var(--muted);
+    font-family: "Newsreader", Georgia, serif;
+    font-size: 1.5rem;
+  }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 16rem minmax(0, 43rem);
+    gap: clamp(3rem, 9vw, 9rem);
+    padding-top: 5rem;
+  }
+
+  .portrait {
+    display: grid;
+    aspect-ratio: 1;
+    place-items: center;
+    margin-bottom: 2rem;
+    border-radius: 50%;
+    color: var(--surface);
+    background: var(--accent);
+    font-family: "Newsreader", Georgia, serif;
+    font-size: 4rem;
+  }
+
+  dl {
+    margin: 0;
+  }
+
+  dl div {
+    padding: 0.8rem 0;
+    border-top: 1px solid var(--line);
+  }
+
+  dt {
+    color: var(--muted);
+    font-size: 0.72rem;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+  }
+
+  dd {
+    margin: 0.2rem 0 0;
+    font-size: 0.9rem;
+  }
+
+  @media (max-width: 48rem) {
+    .about-grid {
+      grid-template-columns: 1fr;
+    }
+
+    aside {
+      display: grid;
+      grid-template-columns: 8rem 1fr;
+      gap: 2rem;
+    }
+
+    .portrait {
+      margin-bottom: 0;
+    }
+  }
+</style>

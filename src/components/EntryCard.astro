@@ -1,0 +1,92 @@
+---
+import type { CollectionEntry } from "astro:content";
+
+interface Props {
+  entry: CollectionEntry<"diary">;
+  index?: number;
+}
+
+const { entry, index = 0 } = Astro.props;
+const base = import.meta.env.BASE_URL;
+const date = entry.data.pubDate.toLocaleDateString("en-GB", {
+  day: "2-digit",
+  month: "short",
+  year: "numeric",
+});
+---
+
+<article class="entry-card">
+  <span class="entry-number" aria-hidden="true">{String(index + 1).padStart(2, "0")}</span>
+  <div>
+    <div class="entry-meta">
+      <time datetime={entry.data.pubDate.toISOString()}>{date}</time>
+      <span aria-hidden="true">·</span>
+      <span>{entry.data.tags[0]}</span>
+    </div>
+    <h3><a href={`${base}diary/${entry.id}/`}>{entry.data.title}</a></h3>
+    <p>{entry.data.description}</p>
+  </div>
+  <a class="read-link" href={`${base}diary/${entry.id}/`} aria-label={`Read ${entry.data.title}`}>
+    Read <span aria-hidden="true">↗</span>
+  </a>
+</article>
+
+<style>
+  .entry-card {
+    display: grid;
+    grid-template-columns: 3rem 1fr auto;
+    gap: 1.25rem;
+    align-items: start;
+    padding: 2rem 0;
+    border-top: 1px solid var(--line);
+  }
+
+  .entry-number {
+    color: var(--muted);
+    font-family: "Newsreader", Georgia, serif;
+    font-size: 1.1rem;
+  }
+
+  .entry-meta {
+    display: flex;
+    gap: 0.55rem;
+    margin-bottom: 0.65rem;
+    color: var(--muted);
+    font-size: 0.76rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  h3 {
+    margin-bottom: 0.55rem;
+    font-size: clamp(1.55rem, 3vw, 2.2rem);
+  }
+
+  h3 a {
+    text-decoration: none;
+  }
+
+  p {
+    max-width: 38rem;
+    margin: 0;
+    color: var(--muted);
+  }
+
+  .read-link {
+    margin-top: 1.8rem;
+    font-size: 0.82rem;
+    font-weight: 600;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+
+  @media (max-width: 38rem) {
+    .entry-card {
+      grid-template-columns: 2rem 1fr;
+    }
+
+    .read-link {
+      display: none;
+    }
+  }
+</style>

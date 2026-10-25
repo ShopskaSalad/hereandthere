@@ -1,0 +1,62 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import EntryCard from "../../components/EntryCard.astro";
+
+const entries = (await getCollection("diary", ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
+---
+
+<BaseLayout
+  title="Diary"
+  description="Notes on storytelling, speech craft, audience, feedback, and the road toward a national Toastmasters contest."
+>
+  <header class="page-header container">
+    <div>
+      <p class="eyebrow">The public notebook</p>
+      <h1>Diary</h1>
+    </div>
+    <p>
+      Notes from the road: story maps, discarded endings, feedback, practice, and the small lessons
+      that change a speech.
+    </p>
+  </header>
+
+  <section class="container entries" aria-label="Diary entries">
+    {entries.map((entry, index) => <EntryCard entry={entry} index={index} />)}
+  </section>
+</BaseLayout>
+
+<style>
+  .page-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: end;
+    gap: 3rem;
+    padding-block: 6rem 4rem;
+  }
+
+  h1 {
+    margin: 0;
+  }
+
+  .page-header > p {
+    max-width: 34rem;
+    margin: 0 0 0.8rem;
+    color: var(--muted);
+    font-family: "Newsreader", Georgia, serif;
+    font-size: 1.4rem;
+  }
+
+  .entries {
+    border-bottom: 1px solid var(--line);
+  }
+
+  @media (max-width: 42rem) {
+    .page-header {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+  }
+</style>
