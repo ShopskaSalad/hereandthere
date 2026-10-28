@@ -6,16 +6,12 @@ tags: ["contest diary", "toastmasters"]
 featured: true
 ---
 
-One, two, three, four… ten.
+1, 2, 3, 4… 10🎙️
 
-That was how I began documenting my preparation for the Toastmasters national speech contest journey in Türkiye.
+I’m documenting my prep for the upcoming Toastmasters national contest in Türkiye. 🇹🇷
 
-The goal is ambitious, and reaching the national stage is not guaranteed. There will be speeches to write, club and area stages to navigate, feedback to hear, and uncomfortable revisions to make.
+Expect things I learn along the way in this account.
 
-That uncertainty is exactly why I want to keep this diary.
-
-I will share what I learn about storytelling, audiences, practice, failure, and improvement. I will share maps, selected fragments, discarded endings, and questions that change the direction of a speech.
-
-I will not publish my complete contest speech. This diary is about the work behind the final performance.
-
-I am not writing as an expert. I am writing as a student trying to become a storyteller worth listening to.
+Thanks, Marty!
+#District109 ⁠#Toastmasters
+![alt text](image.png)
