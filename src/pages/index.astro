@@ -51,7 +51,9 @@ const latest = entries.slice(0, 3);
       <a href={`${base}diary/`}>View all entries <span aria-hidden="true">→</span></a>
     </div>
     <div class="entries">
-      {latest.map((entry, index) => <EntryCard entry={entry} index={index} />)}
+      {latest.map((entry, index) => (
+        <EntryCard entry={entry} index={entries.length - index - 1} />
+      ))}
     </div>
   </section>
 

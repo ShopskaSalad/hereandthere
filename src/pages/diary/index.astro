@@ -24,7 +24,9 @@ const entries = (await getCollection("diary", ({ data }) => !data.draft)).sort(
   </header>
 
   <section class="container entries" aria-label="Diary entries">
-    {entries.map((entry, index) => <EntryCard entry={entry} index={index} />)}
+    {entries.map((entry, index) => (
+      <EntryCard entry={entry} index={entries.length - index - 1} />
+    ))}
   </section>
 </BaseLayout>
 
