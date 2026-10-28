@@ -1,6 +1,6 @@
 ---
-title: "Before the stories, the storyteller"
-description: "A life shaped by borders, numbers, failed experiments, and new beginnings."
+title: "About me"
+description: "Before the stories, the storyteller"
 pubDate: 2026-09-28
 tags: ["about me", "beginnings"]
 featured: true
