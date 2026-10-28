@@ -166,6 +166,18 @@ p {
   margin-bottom: 0.55rem;
 }
 
+.prose :where(p):has(> img:only-child) {
+  margin: 2.75rem 0 0;
+}
+
+.prose img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--line);
+  background: var(--surface);
+}
+
 .rule {
   height: 1px;
   border: 0;

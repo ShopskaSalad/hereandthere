@@ -14,4 +14,4 @@ Expect things I learn along the way in this account.
 
 Thanks, Marty!
 #District109 ⁠#Toastmasters
-![alt text](image.png)
+![Framed childhood photo of a boy in a white shirt and bow tie](image.jpg)
