@@ -1,6 +1,6 @@
 ---
 title: "The journey begins"
-description: "Why I am documenting my preparation for a Toastmasters national speech contest in Türkiye."
+description: "Hayde napred"
 pubDate: 2026-09-27
 tags: ["contest diary", "toastmasters"]
 featured: true
