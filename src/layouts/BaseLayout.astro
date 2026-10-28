@@ -22,7 +22,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
 const defaultImage = new URL(`${import.meta.env.BASE_URL}social-card.svg`, Astro.site);
 const socialImage = image ? new URL(image, Astro.site) : defaultImage;
 
-const umamiId = import.meta.env.PUBLIC_UMAMI_WEBSITE_ID;
+const umamiId = import.meta.env.PUBLIC_UMAMI_WEBSITE_ID || "5a79e207-86f9-4250-b749-ad99dfa726ea";
 const umamiScript = import.meta.env.PUBLIC_UMAMI_SCRIPT_URL || "https://cloud.umami.is/script.js";
 ---
 
@@ -49,7 +49,7 @@ const umamiScript = import.meta.env.PUBLIC_UMAMI_SCRIPT_URL || "https://cloud.um
     <meta name="theme-color" content="#f6f4ef" />
     <title>{pageTitle}</title>
 
-    {umamiId && <script async defer src={umamiScript} data-website-id={umamiId}></script>}
+    {umamiId && <script defer src={umamiScript} data-website-id={umamiId}></script>}
   </head>
   <body>
     <a class="skip-link" href="#main-content">Skip to content</a>
