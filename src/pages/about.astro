@@ -1,171 +1,132 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 
-const base = import.meta.env.BASE_URL;
+const accounts = [
+  {
+    name: "X",
+    handle: "@akinkamilov",
+    href: "https://x.com/akinkamilov",
+  },
+  {
+    name: "LinkedIn",
+    handle: "kamil-akin",
+    href: "https://www.linkedin.com/in/kamil-akin/",
+  },
+];
 ---
 
-<BaseLayout
-  title="About Kamil"
-  description="Kamil Akin's path through borders, mathematics, startups, finance and storytelling."
->
-  <header class="page-header container">
-    <p class="eyebrow">About me</p>
-    <h1>A life between borders, numbers and stories.</h1>
-    <p class="lead">
-      I grew up crossing borders, literally. Now I am learning to turn those crossings into stories
-      people can feel.
-    </p>
-  </header>
+<BaseLayout title="About Kamil" description="Kamil Akin on X and LinkedIn.">
+  <section class="about container">
+    <p class="eyebrow">About</p>
+    <h1>Kamil Akin</h1>
 
-  <div class="about-grid container">
-    <aside>
-      <div class="portrait" aria-hidden="true">
-        <span>KA</span>
-      </div>
-      <dl>
-        <div><dt>Based in</dt><dd>Türkiye</dd></div>
-        <div><dt>Work</dt><dd>Finance</dd></div>
-        <div><dt>Study</dt><dd>Mathematics</dd></div>
-        <div><dt>Current craft</dt><dd>Storytelling</dd></div>
-      </dl>
-    </aside>
-
-    <article class="prose">
-      <p>
-        I am the eldest child of an immigrant family and was raised in western Türkiye in a crowded
-        home shaped by two citizenships and two cultures. My grandparents—the rockstars of our
-        family—played a central role in raising me.
-      </p>
-
-      <p>
-        Before I turned eighteen, I crossed international borders more than one hundred times. Moving
-        repeatedly between countries and cultures taught me that the same place, event, or person can
-        look completely different depending on where you stand.
-      </p>
-
-      <h2>A non-linear education</h2>
-
-      <p>
-        Numbers became another language for me. I answered every mathematics question correctly in
-        the national university entrance examination and chose to study mathematics. From the outside,
-        that might sound like the beginning of a predictable academic path.
-      </p>
-
-      <p>It was not.</p>
-
-      <p>
-        I left and returned to university more than once. During my undergraduate years, I attempted
-        several startups; none became the success I imagined. Eventually, I completed my mathematics
-        degree and began a master's program—then left during its second month.
-      </p>
-
-      <p>
-        Today, I work in finance and spend some of my free time supporting founders through startup
-        acceleration. Finance gives me structure. Startups keep me close to experimentation. Failure
-        taught me to begin again.
-      </p>
-
-      <h2>Why storytelling?</h2>
-
-      <p>
-        I do not want merely to speak clearly. I want to understand why some stories disappear when a
-        speech ends while others remain with us for years.
-      </p>
-
-      <p>
-        Storytelling is where the different parts of my life begin to meet: the child crossing
-        borders, the mathematics student attracted to structure, the founder who experienced failure,
-        the finance professional who values clarity, and the speaker learning to transform experience
-        into meaning.
-      </p>
-
-      <blockquote>
-        My goal is not only to reach a stage. It is to become a storyteller worth listening to.
-      </blockquote>
-
-      <p>
-        My current goal is to compete in the Toastmasters national speech contest in Türkiye. Reaching
-        that stage is not guaranteed. This diary records the maps, lessons, mistakes, feedback, and
-        rewrites along the way—without publishing my complete final contest speech.
-      </p>
-
-      <p><a class="button" href={`${base}diary/`}>Follow the diary</a></p>
-    </article>
-  </div>
+    <ul>
+      {
+        accounts.map((account) => (
+          <li>
+            <a href={account.href} rel="me noopener noreferrer" target="_blank">
+              <span class="icon" aria-hidden="true">
+                {account.name === "X" ? (
+                  <svg viewBox="0 0 24 24">
+                    <path
+                      fill="currentColor"
+                      d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.727-8.835L1.254 2.25H8.08l4.253 5.622L18.244 2.25zm-1.161 17.52h1.833L7.084 4.126H5.117z"
+                    />
+                  </svg>
+                ) : (
+                  <svg viewBox="0 0 24 24">
+                    <path
+                      fill="currentColor"
+                      d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22.23 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45C23.2 24 24 23.23 24 22.27V1.73C24 .77 23.2 0 22.23 0z"
+                    />
+                  </svg>
+                )}
+              </span>
+              <span class="label">
+                <strong>{account.name}</strong>
+                <span>{account.handle}</span>
+              </span>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
 </BaseLayout>
 
 <style>
-  .page-header {
-    padding-block: 6rem 4rem;
-    border-bottom: 1px solid var(--line);
+  .about {
+    padding-block: 6rem 2rem;
   }
 
-  .page-header h1 {
-    max-width: 64rem;
-    margin-bottom: 1.5rem;
-    font-size: clamp(3.2rem, 8vw, 6.8rem);
+  h1 {
+    margin-bottom: 3rem;
+    font-size: clamp(3rem, 8vw, 5rem);
   }
 
-  .lead {
-    max-width: 46rem;
-    color: var(--muted);
-    font-family: "Newsreader", Georgia, serif;
-    font-size: 1.5rem;
-  }
-
-  .about-grid {
-    display: grid;
-    grid-template-columns: 16rem minmax(0, 43rem);
-    gap: clamp(3rem, 9vw, 9rem);
-    padding-top: 5rem;
-  }
-
-  .portrait {
-    display: grid;
-    aspect-ratio: 1;
-    place-items: center;
-    margin-bottom: 2rem;
-    border-radius: 50%;
-    color: var(--surface);
-    background: var(--accent);
-    font-family: "Newsreader", Georgia, serif;
-    font-size: 4rem;
-  }
-
-  dl {
+  ul {
+    max-width: 28rem;
     margin: 0;
-  }
-
-  dl div {
-    padding: 0.8rem 0;
+    padding: 0;
+    list-style: none;
     border-top: 1px solid var(--line);
   }
 
-  dt {
+  a {
+    display: flex;
+    align-items: center;
+    gap: 1.1rem;
+    padding: 1.15rem 0.15rem;
+    border-bottom: 1px solid var(--line);
+    text-decoration: none;
+  }
+
+  a:hover .icon,
+  a:focus-visible .icon {
+    color: var(--surface);
+    background: var(--ink);
+    border-color: var(--ink);
+  }
+
+  a:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 4px;
+  }
+
+  .icon {
+    display: grid;
+    flex: 0 0 auto;
+    width: 2.75rem;
+    height: 2.75rem;
+    place-items: center;
+    border: 1px solid var(--ink);
+    border-radius: 50%;
+    transition: 160ms ease;
+  }
+
+  svg {
+    width: 1.05rem;
+    height: 1.05rem;
+  }
+
+  .label {
+    display: grid;
+    gap: 0.1rem;
+  }
+
+  strong {
+    font-size: 1.05rem;
+    font-weight: 500;
+  }
+
+  .label span {
     color: var(--muted);
-    font-size: 0.72rem;
-    letter-spacing: 0.09em;
-    text-transform: uppercase;
+    font-size: 0.92rem;
   }
 
-  dd {
-    margin: 0.2rem 0 0;
-    font-size: 0.9rem;
-  }
-
-  @media (max-width: 48rem) {
-    .about-grid {
-      grid-template-columns: 1fr;
-    }
-
-    aside {
-      display: grid;
-      grid-template-columns: 8rem 1fr;
-      gap: 2rem;
-    }
-
-    .portrait {
-      margin-bottom: 0;
+  @media (max-width: 42rem) {
+    .about {
+      padding-block: 4rem 1rem;
     }
   }
 </style>
