@@ -1,7 +1,7 @@
 ---
 title: "About me"
 description: "Before the stories, the storyteller"
-pubDate: 2026-09-28
+pubDate: 2026-10-28
 tags: ["about me", "beginnings"]
 featured: true
 ---
